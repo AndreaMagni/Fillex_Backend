@@ -6,8 +6,15 @@ import * as http from 'http';
 import * as os from 'os';
 import l from './logger';
 import oas from './swagger';
+//import Sequelize from 'sequelize';
 
 const app = new Express();
+const { Sequelize } = require('sequelize');
+const sequelize = new Sequelize('fillex', 'root', 'root', {
+  host: 'localhost',
+  port: 3306,
+  dialect: 'mysql'
+});
 
 export default class ExpressServer {
   constructor() {
@@ -32,12 +39,14 @@ export default class ExpressServer {
   }
 
   listen(port = process.env.PORT) {
-    const welcome = (p) => () =>
+    const welcome = (p) => () => {
+      sequelize.authenticate().then(res => {}).catch(err => l.info(`Errore connessione ${err.toString()}`));
       l.info(
         `up and running in ${
           process.env.NODE_ENV || 'development'
         } @: ${os.hostname()} on port: ${p}}`
-      );
+      );   
+    }
 
     oas(app, this.routes)
       .then(() => {
