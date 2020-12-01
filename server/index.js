@@ -1,5 +1,6 @@
 import './common/env';
 import Server from './common/server';
-import routes from './routes';
+//import routes from './routes';
+import fillexRouter from './api/controllers/router';
 
-export default new Server().router(routes).listen(process.env.PORT);
+export default new Server().router(fillexRouter).listen(process.env.PORT);
