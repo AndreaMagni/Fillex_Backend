@@ -4,7 +4,7 @@ import errorHandler from '../api/middlewares/error.handler';
 
 export default function swagger(app, routes) {
   return new Promise((resolve, reject) => {
-    middleware(path.join(__dirname, 'api.yml'), app, (err, mw) => {
+    middleware(path.join(__dirname, 'apiFillex.yml'), app, (err, mw) => {
       if (err) {
         return reject(err);
       }

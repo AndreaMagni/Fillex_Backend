@@ -1,13 +1,16 @@
-//import express from 'express';
-import l from '../../common/logger';
+import banRouter from './bans/banRouter';
+import championRouter from './champions/championRouter';
+import matchRouter from './matches/matchRouter';
+import profileRouter from './profiles/profileRouter';
 import userRouter from './users/userRouter';
-
-//const mainContext = express();
+import warningRouter from './warnings/warningRouter';
 export const baseRoute = '/api/fillex';
 
-//mainContext.use(`${baseRoute}/users`, userRouter)
-
 export default function routes(app) {
-    l.info(`Pino arrivato nel router principale`); 
-    app.use(`${baseRoute}/users`, userRouter);
+  app.use(`${baseRoute}/bans`, banRouter);
+  app.use(`${baseRoute}/champions`, championRouter);
+  app.use(`${baseRoute}/matches`, matchRouter);
+  app.use(`${baseRoute}/profiles`, profileRouter);
+  app.use(`${baseRoute}/users`, userRouter);
+  app.use(`${baseRoute}/warnings`, warningRouter);
 }

@@ -6,7 +6,6 @@ import * as http from 'http';
 import * as os from 'os';
 import l from './logger';
 import oas from './swagger';
-import sequelize from '../database/sequelize'; // Rendo disponibile sequelize 
 
 const app = new Express();
 
@@ -34,13 +33,12 @@ export default class ExpressServer {
 
   listen(port = process.env.PORT) {
     const welcome = (p) => () => {
-      sequelize.authenticate().then(res => {l.info(`Connessione ok`)}).catch(err => l.info(`Errore connessione ${err.toString()}`)); // Utile per testing ma non serve ad altro
       l.info(
         `up and running in ${
           process.env.NODE_ENV || 'development'
         } @: ${os.hostname()} on port: ${p}}`
-      );   
-    }
+      );
+    };
 
     oas(app, this.routes)
       .then(() => {

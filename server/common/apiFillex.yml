@@ -1,0 +1,146 @@
+swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Fillex_Backend
+  description: ""
+
+servers:
+  - url: http://localhost:3000
+    description: 'Server locale'
+
+host: "localhost:3000"
+
+basePath: /api/fillex
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+tags:
+- name: "Ban"
+  description: "Descrizione"
+- name: "Champion"
+  description: "Descrizione"
+- name: "Match"
+  description: "Descrizione"
+- name: "Profile"
+  description: "Descrizione"
+- name: "User"
+  description: "Descrizione"
+- name: "Warning"
+  description: "Descrizione"
+
+definitions:
+  banModel:
+    type: object
+    title: Ban
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: no_stress
+  championModel:
+    type: object
+    title: Champion
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: no_stress
+  matchModel:
+    type: object
+    title: Match
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: no_stress
+  profileModel:
+    type: object
+    title: Profile
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: no_stress             
+  userModel:
+    type: object
+    title: User
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: no_stress
+  warningModel:
+    type: object
+    title: Warning
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: no_stress
+
+paths:
+  /bans:
+    get:
+      tags:
+        - Ban
+      description: Fetch all examples
+      responses:
+        200:
+          description: Returns all examples
+  /champions:
+    get:
+      tags:
+        - Champion
+      description: Fetch all examples
+      responses:
+        200:
+          description: Returns all examples
+  /matches:
+    get:
+      tags:
+        - Match
+      description: Fetch all examples
+      responses:
+        200:
+          description: Returns all examples
+  /profiles:
+    get:
+      tags:
+        - Profile
+      description: Fetch all examples
+      responses:
+        200:
+          description: Returns all examples
+  /users:
+    get:
+      tags:
+        - User
+      description: Fetch all examples
+      responses:
+        200:
+          description: Returns all examples
+  /warnings:
+    get:
+      tags:
+        - Warning
+      description: Fetch all examples
+      responses:
+        200:
+          description: Returns all examples
+  /spec:
+    get:
+      tags:
+        - Specification
+      responses:
+        200:
+          description: Return the API specification

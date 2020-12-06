@@ -2,32 +2,27 @@ const { DataTypes } = require('sequelize');
 
 import sequelize from '../database/sequelize';
 
-const User = sequelize.define(
-  'user',
+const Champion = sequelize.define(
+  'td_champion',
   {
-    iduser: {
-      type: DataTypes.INTEGER,
+    idchampion: {
+      type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
     },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    email: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isEmail: true,
+        len: [1, 45],
       },
     },
-    lastlogin: {
-      type: DataTypes.TIME,
+    icon: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 255],
+      },
     },
   },
   {
@@ -36,4 +31,4 @@ const User = sequelize.define(
   }
 );
 
-export default User;
+export default Champion;
