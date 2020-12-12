@@ -14,13 +14,20 @@ const Ban = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    iduser: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: User,
+        key: 'iduser',
+      },
+    },
     idchampion: {
       type: DataTypes.BIGINT,
       allowNull: false,
       references: {
         model: Champion,
         key: 'idchampion',
-        //deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
       },
     },
     idmatch: {
@@ -29,17 +36,17 @@ const Ban = sequelize.define(
       references: {
         model: Match,
         key: 'idmatch',
-        //deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
       },
     },
-    iduser: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: User,
-        key: 'iduser',
-        //deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-      },
+    isactive: {
+      type: DataTypes.TINYINT,
+      allowNull: true,
+      defaultValue: 1,
+    },
+    date: {
+      type: DataTypes.TIME,
+      allowNull: true,
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
     },
   },
   {

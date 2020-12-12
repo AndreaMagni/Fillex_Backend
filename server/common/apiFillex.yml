@@ -1,15 +1,15 @@
-swagger: "2.0"
+swagger: '2.0'
 
 info:
   version: 1.0.0
-  title: Fillex_Backend
-  description: ""
+  title: Fillex API
+  description: ''
 
 servers:
   - url: http://localhost:3000
     description: 'Server locale'
 
-host: "localhost:3000"
+host: 'localhost:3000'
 
 basePath: /api/fillex
 
@@ -19,84 +19,133 @@ produces:
   - application/json
 
 tags:
-- name: "Ban"
-  description: "Descrizione"
-- name: "Champion"
-  description: "Descrizione"
-- name: "Match"
-  description: "Descrizione"
-- name: "Profile"
-  description: "Descrizione"
-- name: "User"
-  description: "Descrizione"
-- name: "Warning"
-  description: "Descrizione"
+- name: 'Ban'
+  description: 'Fornisce l''elenco dei ban'
+- name: 'Champion'
+  description: 'Mostra aaaa'
+- name: 'Match'
+  description: 'Descrizione'
+- name: 'Profile'
+  description: 'Descrizione'
+- name: 'User'
+  description: 'Descrizione'
+- name: 'Warning'
+  description: 'Descrizione'
 
 definitions:
+
   banModel:
     type: object
     title: Ban
-    required:
-      - name
     properties:
-      name:
+      idban:
+        type: integer
+      iduser:
+        type: integer
+      idchampion:
+        type: number
+      idmatch:
+        type: number
+      isactive:
+        type: number
+      date:
         type: string
-        example: no_stress
+    required:
+      - iduser
+      - idchampion
+      - idmatch
+
   championModel:
     type: object
     title: Champion
-    required:
-      - name
     properties:
       name:
         type: string
         example: no_stress
+    required:
+      - name
+
   matchModel:
     type: object
     title: Match
-    required:
-      - name
     properties:
       name:
         type: string
         example: no_stress
+    required:
+      - name
+
   profileModel:
     type: object
     title: Profile
-    required:
-      - name
     properties:
       name:
         type: string
-        example: no_stress             
+        example: no_stress
+    required:
+      - name
+            
   userModel:
     type: object
     title: User
-    required:
-      - name
     properties:
       name:
         type: string
         example: no_stress
+    required:
+      - name
+
   warningModel:
     type: object
     title: Warning
-    required:
-      - name
     properties:
       name:
         type: string
         example: no_stress
+    required:
+      - name
 
 paths:
+
   /bans:
     get:
       tags:
         - Ban
-      description: Fetch all examples
+      description: Fornisce tutti i ban
       responses:
-        200:
-          description: Returns all examples
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+        '401':
+          description: Authorization information is missing or invalid
+        '404':
+          description: A user with the specified ID was not found
+        '5XX':
+          description: Unexpected error
+    post:
+      tags:
+        - Ban
+      description: Crea un nuovo ban
+      parameters:
+        - name: body
+          in: body
+          description: an example
+          required: true
+          schema: 
+            $ref: "#/definitions/banModel"         
+      responses:
+        '200':
+          description: Ok
+        '400':
+          description: Bad request
+        '401':
+          description: Authorization information is missing or invalid
+        '404':
+          description: A user with the specified ID was not found
+        '5XX':
+          description: Unexpected server error
+
   /champions:
     get:
       tags:
@@ -105,6 +154,7 @@ paths:
       responses:
         200:
           description: Returns all examples
+
   /matches:
     get:
       tags:
@@ -113,6 +163,7 @@ paths:
       responses:
         200:
           description: Returns all examples
+
   /profiles:
     get:
       tags:
@@ -121,6 +172,7 @@ paths:
       responses:
         200:
           description: Returns all examples
+
   /users:
     get:
       tags:
@@ -129,6 +181,7 @@ paths:
       responses:
         200:
           description: Returns all examples
+
   /warnings:
     get:
       tags:
@@ -137,6 +190,7 @@ paths:
       responses:
         200:
           description: Returns all examples
+
   /spec:
     get:
       tags:

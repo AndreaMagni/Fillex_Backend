@@ -6,6 +6,7 @@ import * as http from 'http';
 import * as os from 'os';
 import l from './logger';
 import oas from './swagger';
+import associations from '../models/associations';
 
 const app = new Express();
 
@@ -24,6 +25,8 @@ export default class ExpressServer {
     app.use(bodyParser.text({ limit: process.env.REQUEST_LIMIT || '100kb' }));
     app.use(cookieParser(process.env.SESSION_SECRET));
     app.use(Express.static(`${root}/public`));
+
+    associations();
   }
 
   router(routes) {
